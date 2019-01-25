@@ -1,0 +1,28 @@
+.new-tweet h2 {
+  border-bottom: 2px solid #000000;
+}
+
+section.new-tweet {
+  border-radius: 10px;
+  margin-left: 1em;
+  margin-right: 1em;
+  border: 1px solid lightgray;
+  height: 150px;
+  background-color: #eee;
+  padding: 0 0.5em;
+  position: relative;
+  z-index: 0;
+}
+textarea {
+  width: 100%;
+}
+textarea[placeholder] {
+  padding-left: 0.25em;
+  padding-top: 0.25em;
+}
+
+.container footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

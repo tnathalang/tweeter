@@ -2,10 +2,11 @@
 
 // Basic express setup:
 
-const PORT          = 8080;
-const express       = require("express");
-const bodyParser    = require("body-parser");
-const app           = express();
+const PORT = 8080;
+const express = require("express");
+const bodyParser = require("body-parser");
+const app = express();
+const path = require("path");
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
@@ -28,6 +29,12 @@ const tweetsRoutes = require("./routes/tweets")(DataHelpers);
 
 // Mount the tweets routes at the "/tweets" path prefix:
 app.use("/tweets", tweetsRoutes);
+
+app.post("/tweets");
+
+app.get("/", function(req, res) {
+  res.sendFile(path.join(__dirname + "/index.html"));
+});
 
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
