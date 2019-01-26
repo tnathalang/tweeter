@@ -4,7 +4,7 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 $(document).ready(function() {
-  //   const ROOT_URL = "http://localhost:8080";
+  const ROOT_URL = "http://localhost:8080";
 
   const data = [
     {
@@ -64,36 +64,11 @@ $(document).ready(function() {
     }
   ];
 
-  //   //create a reusable ajax request
-  //   const request = (options, cb) => {
-  //     $.ajax(options)
-  //       .done(response => {
-  //         cb(response);
-  //       })
-  //       .fail(err => {
-  //         console.log("Error: ", err);
-  //       })
-  //       .always(() => {
-  //         console.log("Request completed.");
-  //       });
-  //   };
-
   //   // function that creates a single quote element
   //   const createTweetElement = tweetData => {
   //     return tweetData;
   //   };
 
-  //   const getTweet = () => {
-  //     const options = {
-  //       url: `$(ROOT_URL)/tweets`,
-  //       method: "GET",
-  //       dataType: "json"
-  //     };
-  //     request(options, response => {
-  //       console.log(response);
-  //       createTweetElement(response[0]);
-  //     });
-  //   };
   function createTweetElement(tweetData) {
     const newTweet = $("<article>").addClass("tweet");
     const newHeader = $("<header>");
@@ -115,6 +90,8 @@ $(document).ready(function() {
     return newTweet;
   }
 
+  //Rendering tweets
+
   function renderTweets(tweets) {
     for (let tweet of tweets) {
       let $tweet = createTweetElement(tweet);
@@ -122,6 +99,56 @@ $(document).ready(function() {
       $(".tweet-container").append($tweet);
     }
   }
+
+  //catch the submit event on the tweet button
+  $("form").on("submit", function(event) {
+    event.preventDefault();
+    // extracting the tweet from input box
+    const tweetContent = $("#tweeting").val();
+
+    //building the request properties
+    const options = {
+      url: "/tweets",
+      method: "POST",
+      data: { text: tweetContent }
+    };
+
+    //Ajax request in the request function up top
+    request(options, function(response) {
+      console.log("here's the response");
+      console.log(response);
+    });
+  });
+
+  //loading tweets from the data
+
+  const loadTweet = () => {
+    const options = {
+      url: "/tweets",
+      method: "GET",
+      dataType: "json"
+    };
+
+    request(options, response => {
+      const tweetList = renderTweets(response);
+
+      $(".tweet-container").append(tweetList);
+    });
+  };
+
+  //create a reusable ajax request
+  const request = (options, cb) => {
+    $.ajax(options)
+      .done(response => {
+        cb(response);
+      })
+      .fail(err => {
+        console.log("Error: ", err);
+      })
+      .always(() => {
+        console.log("Request completed.");
+      });
+  };
 
   renderTweets(data);
 });
