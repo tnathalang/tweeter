@@ -45,20 +45,23 @@ $(document).ready(function() {
   //catch the submit event on the tweet button
   $("form").on("submit", function(event) {
     event.preventDefault();
+    if ($(this).val().length > 140) {
+      event.preventDefault();
+    }
     // extracting the tweet from input box
     const tweetContent = $("#tweeting").val();
-
+    const tweetObj = { text: tweetContent };
     //building the request properties
     const options = {
       url: "/tweets",
       method: "POST",
-      data: { text: tweetContent }
+      data: tweetObj
     };
 
-    //Ajax request in the request function up top
+    //Ajax request
     request(options, function(response) {
-      console.log("here's the response");
-      console.log(response);
+      const tweetEl = createTweetElement(response);
+      $(".tweet-container").prepend(tweetEl);
     });
   });
 
