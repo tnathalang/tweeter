@@ -102,7 +102,9 @@ $(document).ready(function() {
   };
 
   $(".box").click(function() {
-    $(".new-tweet").slideToggle();
+    $(".new-tweet").slideToggle("slow", function() {
+      $("textarea").focus();
+    });
   });
 
   loadTweet();
