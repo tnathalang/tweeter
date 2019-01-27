@@ -56,16 +56,16 @@ $(document).ready(function() {
 
     // extracting the tweet from input box
     const tweetContent = $("#tweeting").val();
-    const tweetObj = { text: tweetContent };
+
     //building the request properties
     const options = {
       url: "/tweets",
       method: "POST",
-      data: tweetObj
+      data: { text: tweetContent }
     };
 
     //Ajax request
-    request(options, function(response) {
+    request(options, response => {
       const tweetEl = createTweetElement(response);
       $(".tweet-container").prepend(tweetEl);
     });
@@ -100,7 +100,12 @@ $(document).ready(function() {
         console.log("Request completed.");
       });
   };
+  //function for deleting the tweeted message
+  // $("form").on("submit", function(event) {
+  //   $("textarea").empty();
+  // });
 
+  // function for toggling the compose button
   $(".box").click(function() {
     $(".new-tweet").slideToggle("slow", function() {
       $("textarea").focus();
