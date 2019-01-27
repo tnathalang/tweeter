@@ -44,10 +44,16 @@ $(document).ready(function() {
 
   //catch the submit event on the tweet button
   $("form").on("submit", function(event) {
-    event.preventDefault();
-    if ($(this).val().length > 140) {
-      event.preventDefault();
+    if ($("textarea").val().length === 0) {
+      alert("Fill up your tweet");
+    } else if ($("textarea").val().length > 140) {
+      alert("You can only have less than 140 characters");
+      event.stopPropagation();
+      return false;
     }
+
+    event.preventDefault();
+
     // extracting the tweet from input box
     const tweetContent = $("#tweeting").val();
     const tweetObj = { text: tweetContent };
@@ -94,6 +100,10 @@ $(document).ready(function() {
         console.log("Request completed.");
       });
   };
+
+  $(".box").click(function() {
+    $(".new-tweet").slideToggle();
+  });
 
   loadTweet();
 });
