@@ -21,3 +21,15 @@
   float: left;
   margin-left: 10px;
 }
+
+.box {
+  float: right;
+  padding: 10px 30px;
+  margin: 17px;
+  border-radius: 10px;
+  background-color: #b0ffee;
+}
+
+.box:hover {
+  background-color: white;
+}
