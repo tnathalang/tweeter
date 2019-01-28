@@ -1,10 +1,11 @@
 .container article {
   margin-top: 2em;
-  border-radius: 10px;
   margin-left: 1em;
   margin-right: 1em;
   border: 1px solid lightgray;
-  height: 150px;
+
+  border-radius: 10px;
+  opacity: 0.88;
 }
 article header {
   border-bottom: 1px solid lightgray;
@@ -32,9 +33,9 @@ article footer {
   padding-top: 0.1em;
 }
 
-.tweet-container .cats:hover {
+article:hover {
   border-radius: 10px;
-  opacity: 5;
+  opacity: 1;
   border: 1px solid black;
 }
 
@@ -56,6 +57,7 @@ article footer {
   flex-grow: 1;
   padding-left: 0.25em;
   margin: 0;
+  margin-bottom: auto;
 }
 
 .tweet-container p {

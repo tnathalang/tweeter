@@ -15,6 +15,12 @@
   height: 80px;
   float: left;
 }
+#nav-bar .pen {
+  width: 25px;
+  height: 25px;
+  float: left;
+}
+
 #nav-bar .header {
   line-height: 78px;
   font-size: 2rem;
@@ -26,6 +32,7 @@
   float: right;
   padding: 10px 30px;
   margin: 17px;
+
   border-radius: 10px;
   background-color: #b0ffee;
 }

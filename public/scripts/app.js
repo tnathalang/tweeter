@@ -45,9 +45,32 @@ $(document).ready(function() {
   //catch the submit event on the tweet button
   $("form").on("submit", function(event) {
     if ($("textarea").val().length === 0) {
-      alert("Fill up your tweet");
+      $("#empty")
+        .slideDown("slow")
+        .delay(1000)
+        .slideUp("slow");
+      $("textarea")
+        .focus()
+        .css("background-color", "#f1c0c9");
+      window.setTimeout(function() {
+        $("textarea")
+          .focus()
+          .css("background-color", "white");
+      }, 1900);
     } else if ($("textarea").val().length > 140) {
-      alert("You can only have less than 140 characters");
+      $("#long")
+        .slideDown("slow")
+        .delay(1000)
+        .slideUp("slow");
+      $("textarea")
+        .focus()
+        .css("background-color", "#f1c0c9");
+      window.setTimeout(function() {
+        $("textarea")
+          .focus()
+          .css("background-color", "white");
+      }, 1900);
+
       event.stopPropagation();
       return false;
     }
@@ -100,14 +123,16 @@ $(document).ready(function() {
         console.log("Request completed.");
       });
   };
-  //function for deleting the tweeted message
-  // $("form").on("submit", function(event) {
-  //   $("textarea").empty();
-  // });
+  // function for deleting the tweeted message
+  $("textarea").click(function() {
+    $("textarea")
+      .val()
+      .reset();
+  });
 
   // function for toggling the compose button
   $(".box").click(function() {
-    $(".new-tweet").slideToggle("slow", function() {
+    $(".new-tweet").slideToggle(function() {
       $("textarea").focus();
     });
   });
