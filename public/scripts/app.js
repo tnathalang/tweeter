@@ -15,7 +15,9 @@ $(document).ready(function() {
       .addClass("tweet")
       .text(tweetData.user.handle);
     const newP = $("<p>").text(tweetData.content.text);
-    const newFooter = $("<footer>").text(tweetData.created_at);
+    const newFooter = $("<footer>").text(
+      moment(tweetData.created_at).fromNow()
+    );
 
     newHeader.appendTo(newTweet);
     newImg.appendTo(newHeader);
