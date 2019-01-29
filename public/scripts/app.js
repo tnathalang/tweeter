@@ -6,11 +6,6 @@
 $(document).ready(function() {
   const ROOT_URL = "http://localhost:8080";
 
-  //   // function that creates a single quote element
-  //   const createTweetElement = tweetData => {
-  //     return tweetData;
-  //   };
-
   function createTweetElement(tweetData) {
     const newTweet = $("<article>").addClass("tweet");
     const newHeader = $("<header>");
@@ -44,6 +39,8 @@ $(document).ready(function() {
 
   //catch the submit event on the tweet button
   $("form").on("submit", function(event) {
+    event.preventDefault();
+    console.log("submit");
     if ($("textarea").val().length === 0) {
       $("#empty")
         .slideDown("slow")
@@ -75,8 +72,6 @@ $(document).ready(function() {
       return false;
     }
 
-    event.preventDefault();
-
     // extracting the tweet from input box
     const tweetContent = $("#tweeting").val();
 
@@ -91,6 +86,9 @@ $(document).ready(function() {
     request(options, response => {
       const tweetEl = createTweetElement(response);
       $(".tweet-container").prepend(tweetEl);
+      $(this)
+        .find("textarea")
+        .val("");
     });
   });
 
@@ -123,12 +121,6 @@ $(document).ready(function() {
         console.log("Request completed.");
       });
   };
-  // function for deleting the tweeted message
-  $("textarea").click(function() {
-    $("textarea")
-      .val()
-      .reset();
-  });
 
   // function for toggling the compose button
   $(".box").click(function() {
