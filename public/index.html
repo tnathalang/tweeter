@@ -36,6 +36,9 @@
     <nav id="nav-bar">
       <img class="logo" src="./images/bird.png" />
       <span class="header">Tweeter</span>
+      <button class="box">
+        <img class="pen" src="./images/write.png" /> Compose
+      </button>
     </nav>
 
     <!-- Page-specific (main) content here -->
@@ -46,30 +49,18 @@
           <textarea
             name="text"
             placeholder="What are you humming about?"
+            id="tweeting"
           ></textarea>
+          <div hidden id="empty">Your Tweet is empty</div>
+          <div hidden id="long">Your Tweet exceeded 140 characters</div>
+
           <footer>
             <input type="submit" value="Tweet" />
             <span class="counter">140</span>
           </footer>
         </form>
       </section>
-      <section class="tweet-container">
-        <article class="cats">
-          <header>
-            <div>
-              <img
-                src="https://cdn.discordapp.com/attachments/501247461159993354/537868421954535439/image0.jpg"
-              />
-            </div>
-            <h3>BIRDS</h3>
-
-            <div class="name-tag">@ILoveCss</div>
-          </header>
-
-          <p>Little birdy told me there was food</p>
-          <footer>A Few Moments Ago</footer>
-        </article>
-      </section>
+      <section class="tweet-container"></section>
     </main>
   </body>
 </html>
